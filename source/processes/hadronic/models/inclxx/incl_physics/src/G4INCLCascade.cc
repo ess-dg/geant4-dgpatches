@@ -529,7 +529,7 @@ namespace G4INCL {
     ParticleList const &initialProjectileComponents = theProjectileRemnant->getParticles();
     std::vector<Particle *> shuffledComponents(initialProjectileComponents.begin(), initialProjectileComponents.end());
     // Shuffle the list of potential participants
-    std::random_shuffle(shuffledComponents.begin(), shuffledComponents.end(), Random::getAdapter());
+    std::shuffle(shuffledComponents.begin(), shuffledComponents.end(), Random::getAdapter());
 
     G4bool success = true;
     G4bool atLeastOneNucleonEntering = false;

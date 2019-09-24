@@ -48,10 +48,12 @@
 #include <iostream>
 #include <cmath>
 #include <utility>
+#include <limits>
 #include "G4INCLIRandomGenerator.hh"
 #include "G4INCLThreeVector.hh"
 #include "G4INCLGlobals.hh"
 #include "G4INCLConfig.hh"
+#include "Randomize.hh"
 
 namespace G4INCL {
 
@@ -162,7 +164,21 @@ namespace G4INCL {
 
     class Adapter {
       public:
-        G4int operator()(const G4int n) const;
+        using result_type = unsigned long;
+
+        static constexpr result_type min() {
+          return std::numeric_limits<Adapter::result_type>::min();
+        }
+
+        static constexpr result_type max() {
+          return std::numeric_limits<Adapter::result_type>::max();
+        }
+
+        result_type operator()() const {
+//          return shootInteger(max());
+          return G4RandFlat::shootInt(INT_MAX);
+        }
+
     };
 
     Adapter const &getAdapter();

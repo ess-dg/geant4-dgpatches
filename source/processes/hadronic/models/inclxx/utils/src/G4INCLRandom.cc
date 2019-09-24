@@ -224,10 +224,6 @@ namespace G4INCL {
 #endif // INCLXX_IN_GEANT4_MODE
     }
 
-    G4int Adapter::operator()(const G4int n) const {
-      return shootInteger(n);
-    }
-
     Adapter const &getAdapter() {
       return *theAdapter;
     }
